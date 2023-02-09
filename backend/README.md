@@ -1,6 +1,9 @@
 # Database
-| Sdas | asdasfs |
-|------|---------|
+### Order count
+back-end use to generate order_id
+| Attributes | Data type |
+|------------|-----------|
+|   count    |    int    |
 ### Default menu
 front-end get defual menu from back end with this form and post back menu after edit the ingredian with this form
 ###
@@ -10,7 +13,7 @@ front-end get defual menu from back end with this form and post back menu after 
 | sugar-gram |    int    |
 | salt-gram  |    int    |
 
-### order menu
+### Order menu
 back-end recieve data from front-end send forward with hardware and get update status from hardware to return back to front-end to display
 
 | Attributes | Data type |
@@ -39,21 +42,21 @@ front end edit order from defualt menu and send to back-end. back-end covert def
 endpoint: /menu/order/
 
     return {order_id}
-## get get_order_menu()
+## get current_order_menu()
 back-end send order menu to hardware
 
 end point: /menu/order/
 
     return order menu form
-## put update_status(json:{order_id,status})
+## put update_current_order_status(json:{order_id,status})
 hardware update status of order menu back to back-end to update database
 
 endpoint: /menu/order/status/
 
-## get get_finished_order({order_id}})
+## get order_status({order_id}})
 front end get status of order menu from backend to display if finished
 
-endpoint /menu/order/status
+endpoint: /menu/order/status
 
     return  {status}
 
