@@ -1,21 +1,26 @@
-### Database
+# Database
+| Sdas | asdasfs |
+|------|---------|
 ### Default menu
 front-end get defual menu from back end with this form and post back menu after edit the ingredian with this form
-
-1. menu-names:str
-2. sugar-gram:int
-3. salt-gram:int
+###
+| Attributes | Data type |
+|------------|-----------|
+| menu-names |    str    |
+| sugar-gram |    int    |
+| salt-gram  |    int    |
 
 ### order menu
 back-end recieve data from front-end send forward with hardware and get update status from hardware to return back to front-end to display
 
-1. menu-names:str
-2. sugar:int
-3. salt:int
-4. order_id:int
-5. time:datetime
-6. status:str
-
+| Attributes | Data type |
+|------------|-----------|
+| menu-names |    str    |
+|    sugar   |    int    |
+|    salt    |    int    |
+|  order_id  |    int    |
+| order_time |  datetime |
+|order_status|    str    |
 
 # method
 base_url:exceed03@group3.exceed19.online
@@ -44,8 +49,6 @@ end point: /menu/order/
 hardware update status of order menu back to back-end to update database
 
 endpoint: /menu/order/status/
-
-    send with order menu form
 
 ## get get_finished_order({order_id}})
 front end get status of order menu from backend to display if finished
