@@ -6,13 +6,13 @@ from typing import Union,Optional,List
 
 class Default_menu:
     menu_name:str
-    sugar-gram:int
-    salt-gram:int
+    sugar_gram:int
+    salt_gram:int
 
 class Order_menu:
     menu_name:str
-    sugar-gram:int
-    salt-gram:int
+    sugar_gram:int
+    salt_gram:int
     order_id:int
     order_time:datetime
     order_status:str
