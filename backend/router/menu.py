@@ -5,12 +5,15 @@ from config.database import *
 from typing import Union,Optional,List
 
 class Default_menu(BaseModel):
+    menu_id:int
     menu_name:str
     menu_url:str
+    ingredient:list(str)
     msg_gram:int
     salt_gram:int
 
 class Order_menu(BaseModel):
+    menu_id:int
     menu_name:str
     salt:int
     msg:int
