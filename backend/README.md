@@ -4,32 +4,36 @@ back-end use to generate order_id
 |    Attributes    | Data type |
 |------------------|-----------|
 |   order_count    |    int    |
-|  finished_count  |    int    |
+|    menu_count    |    int    |
 ### Default_menu
 front-end get defual menu from back end with this form and post back menu after edit the ingredian with this form
 ###
 | Attributes | Data_type |
 |------------|-----------|
+|   menu_id  |    int    |
 | menu_names |    str    |
-| sugar_gram |    int    |
+| menu_url   |    str    |
+| Ingredient | list(str) |
 | salt_gram  |    int    |
+|  msg_gram  |    int    |
 
 ### Order_menu
 back-end recieve data from front-end send forward with hardware and get update status from hardware to return back to front-end to display
 
 | Attributes | Data_type |
 |------------|-----------|
+|   menu_id  |    int    |
 | menu_names |    str    |
-|    sugar   |    int    |
 |    salt    |    int    |
+|    msg     |    int    |
 |  order_id  |    int    |
 | order_time |  datetime |
 |order_status|    str    |
 
-### Ingredient_status
+### seasoning_status
 |   Attributes    | Data_type |
 |-----------------|-----------|
-| ingredient_name |    str    |
+| seasoning_name  |    str    |
 |  is_available   |   bool    |
 
 
@@ -43,7 +47,12 @@ back-end get all menu from database and send to front-end
 endpoint: /menu/
 
     return list of Default menu form
-## POST order_menu(json:{order_id,menu_name,sugar,salt})
+
+## POST update_new_menu(json:{menu_name:str,menu_url:str,ingredient:list(str),salt_gram:int,msg_gram:int})
+front-end add new menu send to back-edn for insert to database
+endpoint: /menu/add/
+    return {add_compelte:}
+## POST order_menu(json:{order_id:int,menu_name:str,msg:int,salt:int})
 
 front end edit order from defualt menu and send to back-end. back-end covert default menu form to order form and upload to database
 
@@ -56,22 +65,22 @@ back-end send order menu to hardware
 end point: /menu/current/
 
     return order menu form
-## PUT update_current_order_status(json:{order_id,status})
+## PUT update_current_order_status(json:{order_id:int,status:str})
 hardware update status of order menu back to back-end to update database
 
 endpoint: /menu/order/status/
 
-## GET get_order_status({order_id}})
+## GET get_order_status(json{order_id:int}})
 front end get status of order menu from backend to display if finished
 
 endpoint: /menu/current/status
 
     return  {status}
 
-## POST update_ingredient_status(json:{ingredient_name,is_avialable})
+## POST update_seasoning_status(json:{seasoning_name:str,is_avialable:bool})
 hardware update status to back-end
 
-endpoint: /ingredient/
+endpoint: /seasoning/
 
 
 
