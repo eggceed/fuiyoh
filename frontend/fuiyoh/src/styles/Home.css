@@ -1,0 +1,12 @@
+.menu_list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    padding: 2rem;
+    width: 50%;
+    
+}
+.home {
+    text-align: center;
+    font-size: 5;
+}

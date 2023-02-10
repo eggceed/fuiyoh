@@ -1,11 +1,13 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import Card from './components/Card'
 import {
   Route,
   Routes,
 } from "react-router-dom";
+import Home from './pages/Home';
+import Menu from './pages/Menu';
+import BigCard from './components/BigCard';
 
 
 function App() {
@@ -13,9 +15,13 @@ function App() {
   return (
     <div className="App">
       {/* <Routes>
-        <Route path='/:id' element={}/>
+        <Route path="/" element={<Home/>} />
+        <Route path='/:id' element={<Menu/>}/>
       </Routes> */}
-      <Card/>
+      <Home/>
+      {/* <Menu/> */}
+      {/* <BigCard/> */}
+
     </div>
   )
 }

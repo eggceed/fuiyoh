@@ -4,18 +4,17 @@ import defaultImg from '../assets/default.png'
 import { Link } from 'react-router-dom'
 
 
-const Card = ({ id, name, image, ingredients, seasoning }) => {
+const Card = ({ id, menu_name, menu_url, ingredient }) => {
 
-    const routeName = `/${id}`
+    // const routeName = `/${id}`
 
     return (
         <div className='card'>
-            < img src={image ?? defaultImg} width='220'/>
+            < img src={menu_url ?? defaultImg} width='220'/>
             <div className='card-text'>
-                <h1 className='title'>Name{name}</h1>
+                <h1 className='title'>{menu_name}</h1>
                 <div className='information'>
-                    <p>ingredients1, in2{ingredients}</p>
-                    <p>ss1, ss2{seasoning}</p>
+                    <p>{ingredient + ''}</p>
                 </div>
             </div>
         </div>
