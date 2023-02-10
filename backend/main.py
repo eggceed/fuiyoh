@@ -19,7 +19,6 @@ app.add_middleware(
 
 
 
-app = FastAPI()
 app.include_router(menu.router)
 app.include_router(seasoning.router)
 
