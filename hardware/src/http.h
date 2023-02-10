@@ -13,4 +13,4 @@ typedef struct sOrderMenu {
 
 DynamicJsonDocument GET_current_order() throw (char*);
 OrderMenu fromJson(DynamicJsonDocument json);
-bool PUT_order_status(void* param) throw (char*);
+bool PUT_order_status(OrderMenu order) throw (char*);

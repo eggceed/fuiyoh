@@ -12,7 +12,7 @@ DynamicJsonDocument GET_current_order() throw (char*) {
   String endpoint = API_URL + "/menu/current";
   http.begin(endpoint);
   int responseCode = http.GET();
-  if (responseCode != 200) throw "HTTP Error";  
+  if (responseCode != 200) throw "GET /menu/current: HTTP Error";  
 
   DynamicJsonDocument doc(1024);
   String payload = http.getString();
@@ -33,4 +33,25 @@ OrderMenu fromJson(DynamicJsonDocument json) {
   order.datetime = json["order_time"].as<String>();
   order.status = status;
   return order;
+}
+
+bool PUT_order_status(OrderMenu order) throw (char*) {
+  DynamicJsonDocument doc(1024);
+  doc["menu_id"] = order.menuId;
+  doc["menu_names"] = order.menuName;
+  doc["salt"] = order.salt;
+  doc["msg"] = order.msg;
+  doc["order_id"] = order.orderId;
+  doc["order_time"] = order.datetime;
+  doc["status"] = "finished";
+
+  String body;
+  serializeJson(doc, body);
+
+  String endpoint = API_URL + "/menu/order/status";
+  http.begin(endpoint);
+  http.addHeader("Content-Type", "application/json");
+
+  int responseCode = http.PUT(body);
+  if (responseCode != 200) throw "PUT /menu/order/status: HTTP Error";
 }
