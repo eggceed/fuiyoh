@@ -48,6 +48,13 @@ endpoint: /menu/
 
     return list of Default menu form
 
+## GET get_some_menu_show({num_id})
+back-end get some menu from database and send to front-end
+
+endpoint: /menu/num/{menu_id}
+    
+    return default menu form
+
 ## POST update_new_menu(json:{menu_name:str,menu_url:str,ingredient:list(str),salt_gram:int,msg_gram:int})
 front-end add new menu send to back-edn for insert to database
 endpoint: /menu/add/
