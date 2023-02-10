@@ -4,27 +4,16 @@ from fastapi import APIRouter,HTTPException
 from config.database import *
 from typing import Union,Optional,List
 
-class Default_menu(BaseModel):
-    menu_name:str
-    menu_url:str
-    menu_id:int=0
-    ingredient:List[str]=[]
-    msg_gram:int=0
-    salt_gram:int=0
-
-class Order_menu(BaseModel):
-    menu_id:int
-    menu_name:str
-    salt:int=0
-    msg:int=0
-    order_id:int=0
-    order_time:Union[datetime,None]=None
-    order_status:str=''
+class Seasoning(BaseModel):
+    seasoning_name:str=''
+    is_available:bool=False
 
 
 
 router = APIRouter(prefix='/seasoning')
 
-@router.get('/')
-def nothing():
-    return 'ok'
+@router.post('/')
+def update_seasoning_status(seasoning:Seasoning):
+    if seasoning.seasoning_name not in ['msg','salt']:
+        raise HTTPException(status_code=400,detail='seasoning name not found')
+    seasoning_status.update_one({'seasoning_name':seasoning.seasoning_name},{'$set':{'is_available':seasoning.is_available}})
