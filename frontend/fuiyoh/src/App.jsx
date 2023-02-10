@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import './App.css'
 import Card from './components/Card'
+import NavBar from './components/NavBar'
 import {
   Route,
   Routes,
@@ -14,6 +15,7 @@ function App() {
 
   return (
     <div className="App">
+    <NavBar/>
       {/* <Routes>
         <Route path="/" element={<Home/>} />
         <Route path='/:id' element={<Menu/>}/>
