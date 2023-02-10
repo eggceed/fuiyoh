@@ -13,7 +13,7 @@ front-end get defual menu from back end with this form and post back menu after 
 |   menu_id  |    int    |
 | menu_names |    str    |
 | menu_url   |    str    |
-| Ingredient | list(str) |
+| ingredient | list(str) |
 | salt_gram  |    int    |
 |  msg_gram  |    int    |
 

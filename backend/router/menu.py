@@ -18,12 +18,13 @@ class Order_menu(BaseModel):
     salt:int=0
     msg:int=0
     order_id:int=0
-    order_time:Union[datetime,None]=None
+    order_time:Union[datetime,str,None]=None
     order_status:str=''
 
 
 
 router = APIRouter(prefix='/menu')
+
 
 @router.get('/')
 def all_menu_list():
@@ -35,6 +36,8 @@ def all_menu_list():
 def update_new_menu(default_menu:Default_menu):
     cnt=order_count.find_one({},{'_id':0})
     cnt['menu_count']+=1
+    if menu.find_one({'menu_name':default_menu.menu_name},{'_id':0}):
+        raise HTTPException(status_code=400,detail='menu_name already exist')
     if default_menu.menu_name=='':
         raise HTTPException(status_code=400,detail='menu_name is required')
     new_menu = Default_menu(menu_id=cnt['menu_count'],menu_name=default_menu.menu_name,menu_url=default_menu.menu_url,ingredient=default_menu.ingredient,msg_gram=default_menu.msg_gram,salt_gram=default_menu.salt_gram)
@@ -59,8 +62,30 @@ def post_order_menu(default_menu:Default_menu):
     return {'order_id':(cnt['order_count'])}
 
 @router.get('/current')
-def get_current_order_menu():
-    if order_menu.find_one({},{'_id':0})==None:
-        raise HTTPException(status_code=400,detail='no order')
-    return list(order_menu.find({},{'_id':0}))
+def get_currnt_order_menu():
+    if not order_menu.find_one({}):
+        raise HTTPException(status_code=400,detail='did not do any menu before')
+    menu_current=order_menu.find_one({'order_id':order_count.find_one({})['order_count']},{"_id":0})
+    menu_current=Order_menu(order_id=menu_current['order_id'],menu_id=menu_current['menu_id'],menu_name=menu_current['menu_name'],salt=menu_current['salt'],msg=menu_current['msg'],order_time=menu_current['order_time'],order_status=menu_current['order_status'])
+    # print(menu_current)
+    if menu_current.order_status=='Complete':
+        raise HTTPException(status_code=400,detail='Nothing menu to do')
+    return menu_current
 
+@router.get('/current/status')
+def get_currnt_order_status(order_id:Order_menu):
+    pass
+    if not order_menu.find_one({}):
+        raise HTTPException(status_code=400,detail='did not do any menu before')
+    menu_current=order_menu.find_one({'order_id':order_id.order_id},{"_id":0})
+    if not menu_current:
+        raise HTTPException(status_code=400,detail='Order id not found')
+    return menu_current
+
+@router.post('/current/order/status')
+def update_current_order_status(order:Order_menu):
+    if not order_menu.find_one({}):
+        raise HTTPException(status_code=400,detail='did not do any menu before')
+    if not order_menu.find_one({'order_id':order.order_id}):
+        raise HTTPException(status_code=400,detail='Order id not found')
+    order_menu.update_one({'order_id':order.order_id},{'$set':{'order_status':order.order_status}})
