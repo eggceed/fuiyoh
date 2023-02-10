@@ -61,12 +61,12 @@ def post_order_menu(default_menu:Default_menu):
         raise HTTPException(status_code=400,detail='menu_name not found')
     if default_menu.menu_name=='':
         raise HTTPException(status_code=400,detail='menu_name is required')
-    # if seasoning_status.find_one({'seasoning_name':'msg'},{'_id':0})['is_available']==False and seasoning_status.find_one({'seasoning_name':'salt'},{'_id':0})['is_available']==False:
-    #     raise HTTPException(status_code=400,detail='salt and msg not available')
-    # if seasoning_status.find_one({'seasoning_name':'msg'},{'_id':0})['is_available']==False:
-    #     raise HTTPException(status_code=400,detail='msg not available')
-    # if seasoning_status.find_one({'seasoning_name':'salt'},{'_id':0})['is_available']==False:
-    #     raise HTTPException(status_code=400,detail='salt not available')
+    if seasoning_status.find_one({'msg':False},{'_id':0})['is_available'] and seasoning_status.find_one({'salt':False},{'_id':0})['is_available']:
+        raise HTTPException(status_code=400,detail='salt and msg not available')
+    if seasoning_status.find_one({'msg':False},{'_id':0})['is_available']:
+        raise HTTPException(status_code=400,detail='msg not available')
+    if seasoning_status.find_one({'salt':False},{'_id':0})['is_available']:
+        raise HTTPException(status_code=400,detail='salt not available')
     new_order_menu = Order_menu(menu_id=default_menu.menu_id,menu_name=default_menu.menu_name,msg=default_menu.msg_gram/5,salt=default_menu.salt_gram/5,order_id=cnt['order_count'],order_time=str(datetime.now()),order_status='ordering')
     order_menu.insert_one(new_order_menu.dict())
     order_count.update_one({},{'$set':cnt})
