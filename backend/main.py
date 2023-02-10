@@ -22,6 +22,7 @@ app.add_middleware(
 app = FastAPI()
 app.include_router(menu.router)
 app.include_router(seasoning.router)
+
 @app.get("/")
 def root():
     return {"msg":"welcome to root page"}

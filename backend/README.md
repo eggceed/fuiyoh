@@ -30,7 +30,7 @@ back-end recieve data from front-end send forward with hardware and get update s
 | order_time |  datetime |
 |order_status|    str    |
 
-### seasoning_status
+### Seasoning_status
 |   Attributes    | Data_type |
 |-----------------|-----------|
 | seasoning_name  |    str    |

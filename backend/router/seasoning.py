@@ -23,3 +23,5 @@ class Order_menu(BaseModel):
 router = APIRouter(prefix='/seasoning')
 
 @router.get('/')
+def all_seasoning_list():
+    return list(seasoning_status.find({},{'_id':0}))

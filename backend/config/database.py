@@ -8,7 +8,7 @@ client = MongoClient(f'mongodb://{username}:{password}@mongo.exceed19.online:844
 
 print(username,password)
 db = client['exceed03']
-menu = db['Deafualt_menu']
+menu = db['Default_menu']
 order_count = db['Order_count']
 order_menu = db['Order_menu']
 seasoning_status = db['seasoning_status']
