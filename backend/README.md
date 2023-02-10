@@ -59,7 +59,7 @@ endpoint: /menu/num/{menu_id}
 front-end add new menu send to back-edn for insert to database
 endpoint: /menu/add/
     return {add_compelte:}
-## POST order_menu(json:{order_id:int,menu_name:str,msg:int,salt:int})
+## POST order_menu(json:{order_id:int,menu_name:str,msg_gram:int,salt_gram:int})
 
 front end edit order from defualt menu and send to back-end. back-end covert default menu form to order form and upload to database
 

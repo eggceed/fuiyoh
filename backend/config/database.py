@@ -22,6 +22,6 @@ if not menu.find_one({}):
         menu.insert_one({"menu_id":order_count.find_one({})['menu_count'],"menu_name":i['menu_name'],"menu_url":i['menu_url'],"ingredient":i['ingredient'],"salt_gram":i['salt_gram'],"msg_gram":i['msg_gram']})
 
 if not seasoning_status.find_one({}):
-    seasoning_status.insert_many([{"salt":False},{"msg":False}])
+    seasoning_status.insert_many([{"salt":True},{"msg":True}])
 
     
