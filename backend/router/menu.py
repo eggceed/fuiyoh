@@ -83,12 +83,12 @@ def get_currnt_order_menu():
         raise HTTPException(status_code=400,detail='Nothing menu to do')
     return menu_current
 
-@router.get('/current/status')
-def get_currnt_order_status(order_id:Order_menu):
+@router.get('/current/status/{order_id}')
+def get_currnt_order_status(order_id:int):
     pass
     if not order_menu.find_one({}):
         raise HTTPException(status_code=400,detail='did not do any menu before')
-    menu_current=order_menu.find_one({'order_id':order_id.order_id},{"_id":0})
+    menu_current=order_menu.find_one({'order_id':order_id},{"_id":0})
     if not menu_current:
         raise HTTPException(status_code=400,detail='Order id not found')
     return menu_current
