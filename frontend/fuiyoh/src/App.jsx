@@ -6,8 +6,6 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import Home from './pages/Home';
-// import BigCard from './components/BigCard';
 
 
 function App() {
@@ -16,9 +14,13 @@ function App() {
     <div className="App">
     <NavBar/>
       {/* <Routes>
-        <Route path='/:id' element={}/>
+        <Route path="/" element={<Home/>} />
+        <Route path='/:id' element={<Menu/>}/>
       </Routes> */}
-      <Card/>
+      <Home/>
+      {/* <Menu/> */}
+      {/* <BigCard/> */}
+
     </div>
   )
 }
