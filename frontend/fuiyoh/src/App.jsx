@@ -2,11 +2,15 @@ import { useState } from 'react'
 import './App.css'
 import Card from './components/Card'
 import NavBar from './components/NavBar'
+import Home from './pages/Home'
+import AddMenu from './pages/AddMenu'
 import {
+  BrowserRouter,
+  Link,
+  Router,
   Route,
   Routes,
 } from "react-router-dom";
-
 
 function App() {
 
@@ -17,7 +21,10 @@ function App() {
         <Route path="/" element={<Home/>} />
         <Route path='/:id' element={<Menu/>}/>
       </Routes> */}
-      <Home/>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/add-menu" element={<AddMenu />}/>
+      </Routes>
       {/* <Menu/> */}
       {/* <BigCard/> */}
 

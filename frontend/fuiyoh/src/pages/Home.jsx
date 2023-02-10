@@ -3,7 +3,7 @@ import Card from '../components/Card'
 import TestData from '../assets/test.json'
 import '../styles/Home.css'
 import Buttton from '../components/Button'
-
+  
 const Home = () => {
     // const [menu, setMenu] = useState([])
     
@@ -16,10 +16,12 @@ const Home = () => {
     return (
     <div>
         <h1 className='home'>Menu</h1>
-        <div className='menu_list'>
-            {TestData.init_menu.map(m => <Card {...m} />)}
-        </div> 
-        <Buttton name="+"/>
+            <div className='menu_list'>
+                {TestData.init_menu.map(m => <Card {...m} />)}
+            </div> 
+            <a href='/add-menu'>
+                <Buttton name="+"/>
+            </a>
     </div>
     
   )
