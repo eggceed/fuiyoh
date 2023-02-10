@@ -37,7 +37,7 @@ def some_menu_show(menu_id:int):
         raise HTTPException(status_code=400,detail='no menu')
     if not menu.find_one({'menu_id':menu_id},{'_id':0}):
         raise HTTPException(status_code=400,detail='menu_id not found')
-    return menu.find_one({'menu_id':menu_id},{'_id':0}})
+    return menu.find_one({'menu_id':menu_id},{'_id':0})
 @router.post('/add')
 def update_new_menu(default_menu:Default_menu):
     cnt=order_count.find_one({},{'_id':0})
