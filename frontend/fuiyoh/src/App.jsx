@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
 import './App.css'
 import Card from './components/Card'
+import NavBar from './components/NavBar'
 import {
   Route,
   Routes,
@@ -12,6 +12,7 @@ function App() {
 
   return (
     <div className="App">
+    <NavBar/>
       {/* <Routes>
         <Route path='/:id' element={}/>
       </Routes> */}
