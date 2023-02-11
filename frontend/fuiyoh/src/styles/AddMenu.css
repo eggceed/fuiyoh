@@ -81,6 +81,11 @@ input {
 
 .button {
     display: flex;
-    justify-content: flex-end;
     margin: 0 auto;
+}
+
+.menu-img {
+    height: 15px;
+    margin-top: 25px;
+    margin-left: 10px;
 }

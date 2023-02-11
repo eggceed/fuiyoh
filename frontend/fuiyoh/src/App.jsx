@@ -4,6 +4,7 @@ import Card from './components/Card'
 import NavBar from './components/NavBar'
 import Home from './pages/Home'
 import AddMenu from './pages/AddMenu'
+import Menu from './pages/Menu'
 import {
   BrowserRouter,
   Link,
@@ -20,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path='/:id' element={<Menu/>}/>
+        <Route path='/add-menu' element={<AddMenu/>}/>
       </Routes>
     </div>
   )
