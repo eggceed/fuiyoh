@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import {  getBigMenu, getMenu } from '../assets/services/menu'
 import BigCard from '../components/BigCard'
+import Button from '../components/Button'
 import Seasoning from '../components/Seasoning'
 import '../styles/Menu.css'
 
@@ -16,6 +17,7 @@ const Menu = () => {
 
   return (
     <div className='container'>
+      {/* <Button name='<' type="button" /> */}
         <h1 className='menu-title'>{menu.menu_name}</h1>
         <div className='menu-info'> 
         <BigCard menuPass={menu}/>

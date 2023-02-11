@@ -12,10 +12,14 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
+import { statusContext } from './contexts/context'
 
 function App() {
+  const [btnDisable, setBtnDisable] = useState(false)
+
 
   return (
+    <statusContext.Provider value={[btnDisable, setBtnDisable]}>
     <div className="App">
     <NavBar/>
       <Routes>
@@ -24,6 +28,8 @@ function App() {
         <Route path='/add-menu' element={<AddMenu/>}/>
       </Routes>
     </div>
+    </statusContext.Provider>
+    
   )
 }
 

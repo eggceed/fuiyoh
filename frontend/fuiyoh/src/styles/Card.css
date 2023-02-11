@@ -39,9 +39,9 @@ body {
 }
 
 .card:hover {
-    transform: scale(0.9, 0.9);
-    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
-     -5px -5px 30px 15px rgba(0,0,0,0.22);
+    transform: scale(0.93, 0.93);
+    box-shadow: 2px 5px 12px 4px rgba(0,0,0,0.4),
+     0px -2px 12px 4px rgba(0,0,0,0.22);
     transition: all 0.2s ease-in-out;
 }
 

@@ -3,6 +3,7 @@ import Card from '../components/Card'
 import '../styles/Home.css'
 import Buttton from '../components/Button'
 import { getMenu } from '../assets/services/menu'
+import { NavLink } from 'react-router-dom'
 
 const Home = () => {
     const [menu, setMenu] = useState([])
@@ -19,9 +20,9 @@ const Home = () => {
             {menu.map((m,i) => <Card {...m} key={i} />)}
         </div> 
         <div className='add-btn'>
-            <a href="/add-menu">
+            <NavLink to='/add-menu'>
             <Buttton name="+"/>
-            </a>
+            </NavLink>
         </div>
         
     </div>
