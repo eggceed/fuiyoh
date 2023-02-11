@@ -16,14 +16,10 @@ function App() {
   return (
     <div className="App">
     <NavBar/>
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Home/>} />
         <Route path='/:id' element={<Menu/>}/>
-      </Routes> */}
-      <Home/>
-      {/* <Menu/> */}
-      {/* <BigCard/> */}
-
+      </Routes>
     </div>
   )
 }
