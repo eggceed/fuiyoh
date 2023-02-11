@@ -13,7 +13,7 @@
 .top {
     display: flex;
     flex-direction: row;
-    margin-left: 50px;
+    margin-left: 200px;
     width: 100%;
 }
 
@@ -24,12 +24,15 @@
 
 .img-section {
     display: flex;
-    width: 16%;
+    height: 70%;
+    width: 19%;
     flex-direction: row;
-    margin-left: 20px; 
+    margin-top: 10px;
+    margin-left: 10px; 
 }
 
 .default-menu-image {
+    height: 100%;
     width: 100%;
 }
 
@@ -64,7 +67,9 @@ input {
 .seasoning {
     display: flex;
     flex-direction: row;
+    height: 50%;
     margin-left: 20px;
+    margin-right: 20px;
 }
 
 .seasoning-name {
