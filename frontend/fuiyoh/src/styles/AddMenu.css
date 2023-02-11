@@ -1,0 +1,91 @@
+.add-menu {
+    display: flex;
+    justify-content: left;
+    margin-left: 20px;
+}
+
+.add {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid black;
+}
+
+.top {
+    display: flex;
+    flex-direction: row;
+    margin-left: 50px;
+    width: 100%;
+}
+
+.add-first-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.img-section {
+    display: flex;
+    width: 16%;
+    flex-direction: row;
+    margin-left: 20px; 
+}
+
+.default-menu-image {
+    width: 100%;
+}
+
+li {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+input {
+    margin-left: 15px;
+}
+
+
+
+.bottom {
+    display: flex;
+    border: 1px solid black;
+}
+
+.add-ingrediants {
+    display: flex;
+    flex-direction: column;
+}
+
+.ingrediants {
+    margin-top: 10px;
+    margin-left: 15px;
+    width: 210px;
+    height: 100px;
+}
+
+.seasoning {
+    display: flex;
+    flex-direction: row;
+    margin-left: 20px;
+}
+
+.seasoning-name {
+    margin-top: 20px;
+}
+
+.seasoning-amount {
+    margin-top: 20px;
+}
+
+.seasoning-input {
+    margin-right: 10px;
+}
+
+.button {
+    display: flex;
+    margin: 0 auto;
+}
+
+.menu-img {
+    height: 15px;
+    margin-top: 25px;
+    margin-left: 10px;
+}

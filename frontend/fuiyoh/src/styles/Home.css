@@ -10,3 +10,8 @@
     text-align: center;
     font-size: 5;
 }
+
+button {
+    margin-bottom: 10px;
+    float: right;
+}

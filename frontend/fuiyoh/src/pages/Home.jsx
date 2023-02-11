@@ -18,7 +18,9 @@ const Home = () => {
         <div className='menu_list'>
             {menu.map((m,i) => <Card {...m} key={i} />)}
         </div> 
+        <a href="/add-menu">
         <Buttton name="+"/>
+        </a>
     </div>
     
   )

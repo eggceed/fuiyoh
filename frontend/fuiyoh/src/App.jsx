@@ -2,14 +2,16 @@ import { useState } from 'react'
 import './App.css'
 import Card from './components/Card'
 import NavBar from './components/NavBar'
+import Home from './pages/Home'
+import AddMenu from './pages/AddMenu'
+import Menu from './pages/Menu'
 import {
+  BrowserRouter,
+  Link,
+  Router,
   Route,
   Routes,
 } from "react-router-dom";
-import Home from './pages/Home';
-import Menu from './pages/Menu';
-import BigCard from './components/BigCard';
-
 
 function App() {
 
@@ -19,6 +21,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home/>} />
         <Route path='/:id' element={<Menu/>}/>
+        <Route path='/add-menu' element={<AddMenu/>}/>
       </Routes>
     </div>
   )
