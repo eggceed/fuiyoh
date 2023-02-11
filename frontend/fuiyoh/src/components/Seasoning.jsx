@@ -85,7 +85,9 @@ const Seasoning = ({ menuPass }) => {
                     <td><h3>g</h3></td>
                 </tr> 
             </table>
-            <Button name="OK" type="button" onClick={() => onclick(menuID)}/>
+            <div className='seasoning-btn'>
+                <Button name="สั่งเครื่องปรุง" type="button" onClick={() => onclick(menuID)}/>
+            </div>
         </div>
   )
 }
