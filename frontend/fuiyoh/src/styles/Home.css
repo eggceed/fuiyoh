@@ -3,15 +3,33 @@
     grid-template-columns: repeat(3, 1fr);
     gap: 2rem;
     padding: 2rem;
-    width: 50%;
+    width: 70%;
+    margin: 0 auto;
     
 }
 .home {
+    color: #d9480f;
     text-align: center;
-    font-size: 5;
+    justify-content: center;
+    font-size: 50px;
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-weight: bold;
+    font-family: 'Ubuntu', sans-serif;
+    letter-spacing: 8px; 
+    line-height: 1.5;
+    text-shadow: 2px 2px 3px #817f7f;
 }
 
-button {
-    margin-bottom: 10px;
-    float: right;
+.add-btn button{
+    position:fixed;
+	width:60px;
+	height:60px;
+	bottom:40px;
+	right:40px;
+	color:#FFF;
+	border-radius: 50%;
+	text-align:center;
+    font-size: 1.5rem;
+	box-shadow: 2px 2px 3px #999;
+    background-color: #d9480f;
 }

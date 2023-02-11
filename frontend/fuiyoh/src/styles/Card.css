@@ -1,25 +1,55 @@
+body {
+  -webkit-font-smoothing: antialiased;
+}
+
+/* * {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+} */
 
 .card {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    /* gap: 2rem; */
     padding: 2rem;
     border: 2px solid #707070;
     border-radius: 12px;
-    text-align: left;    
+    /* text-align: left;     */
     text-decoration: none;
-    color: black;
+    color: #343a40;
+    background-color:#fbfbfb;
+    font-family: 'Noto Sans Thai', sans-serif;
 }
 
+
 .title {
-    font-size: 25px;
-    margin: auto;
-    margin-top: 1px;
+    font-size: 1.4em;
+    font-weight: bold;
+    margin: 0px;
+    margin-top: 5px;
     text-decoration: none;
+
 }
 
 .information {
     font-size: 15px;
-    margin: auto;
-    margin-top: 10px;
+    /* margin: auto; */
+    margin-top: 0px;
+    
 }
+
+.card:hover {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+     -5px -5px 30px 15px rgba(0,0,0,0.22);
+    transition: all 0.2s ease-in-out;
+}
+
+
+img {
+    border-radius: 0.5rem 0.5rem 0 0;
+    width: 100%;
+    object-fit: cover;
+    max-height: max(10rem, 30vh);
+    aspect-ratio: 4/3;
+  }

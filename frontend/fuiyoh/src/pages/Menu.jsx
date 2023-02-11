@@ -16,7 +16,7 @@ const Menu = () => {
 
   return (
     <div className='container'>
-        <h1>{menu.menu_name}</h1>
+        <h1 className='menu-title'>{menu.menu_name}</h1>
         <div className='menu-info'> 
         <BigCard menuPass={menu}/>
         <Seasoning menuPass={menu}/>

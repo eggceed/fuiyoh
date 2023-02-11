@@ -1,11 +1,11 @@
-import React, { Fragment, Component } from "react";
-import '../styles/Navbar.css';
+import React, { Fragment, Component, useState } from "react";
+import '../styles/NavBar.css';
 
 const Navbar = () => {
     return(
         <Fragment>
-            <div class="topnav">
-                <a class="active" href="/">Fuiyoh</a>
+            <div className="topnav">
+                <a className="active" href="/">Fuiyoh</a>
             </div>
         </Fragment>
     )
