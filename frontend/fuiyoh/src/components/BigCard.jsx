@@ -4,7 +4,7 @@ import '../styles/BigCard.css'
 
 
 const BigCard = ({ menuPass }) => {
-    console.log(menuPass)
+    // console.log(menuPass)
     
   return (
     <div className='bigcard'>
@@ -12,7 +12,7 @@ const BigCard = ({ menuPass }) => {
             <div className='card-text'>
                 <h1 className='indredient'>วัตถุดิบ</h1>
                 <div className='information'>
-                    {menuPass.ingredient && menuPass.ingredient.map(i => <li>{i}</li>)}
+                    {menuPass.ingredient && menuPass.ingredient.map((e,i) => <li key={i}>{e}</li>)}
                     {/* {console.log(menuPass.ingredient)} */}
                 </div>
             </div>

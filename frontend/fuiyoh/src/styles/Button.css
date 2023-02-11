@@ -6,7 +6,7 @@
 } */
 
 
-button {
+.btn {
     background-color: #b7defc;
     border: 0;
     border-radius: .5rem;
@@ -27,15 +27,19 @@ button {
   touch-action: manipulation;
 }
 
-button:hover {
+.btn:hover {
   background-color: rgb(162, 194, 226);
 }
 
-button:focus {
+.btn:focus {
   outline: 2px solid transparent;
   outline-offset: 2px;
 }
 
-button:focus-visible {
+.btn:focus-visible {
   box-shadow: none;
+}
+
+.btn:disabled {
+  background-color: #D1D5DB;
 }
