@@ -13,3 +13,8 @@
     font-family: 'IBM Plex Sans Thai', sans-serif;
 
 }
+
+button {
+    margin-bottom: 10px;
+    float: right;
+}
