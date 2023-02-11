@@ -41,3 +41,6 @@
 
 ### C Tools ###
 .ccls
+
+### Credentials ###
+wifi_credentials.h
