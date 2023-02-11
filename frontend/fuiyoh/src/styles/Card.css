@@ -1,13 +1,11 @@
 body {
-  /* background-color:#f2f2f2; */
-  font-family: 'RobotoDraft', 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 
-* {
+/* * {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
-}
+} */
 
 .card {
     display: flex;
@@ -19,7 +17,8 @@ body {
     /* text-align: left;     */
     text-decoration: none;
     color: black;
-    background-color:#f2f2f2;
+    background-color:#e9ecef;
+    font-family: 'Noto Sans Thai', sans-serif;
 }
 
 
@@ -37,3 +36,10 @@ body {
     margin-top: 10px; */
     
 }
+
+.card:hover {
+    transform: scale(0.9, 0.9);
+    box-shadow: 5px 5px 30px 15px rgba(0,0,0,0.25), 
+      -5px -5px 30px 15px rgba(0,0,0,0.22);
+  }
+  

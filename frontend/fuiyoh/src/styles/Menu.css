@@ -2,4 +2,21 @@
     display: flex;
     flex-direction: row;
     gap: 2rem;
+    justify-items: center;
+    justify-content: center;
+    
+    
 }
+
+.menu-title {
+    /* display: flex; */
+    /* flex-direction: row; */
+    /* margin: 0 auto; */
+    text-align: center;
+    /* font-size: 40px; */
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+
+/* .container {
+    
+} */

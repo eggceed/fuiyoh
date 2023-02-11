@@ -7,4 +7,11 @@
     border-radius: 12px;
     text-decoration: none;
     color: black;
+    font-family: 'Noto Sans Thai', sans-serif;
+    background-color:#f2f2f2;
+}
+
+.seasoning-title {
+    font-size: 30px;
+    text-align: left;
 }

@@ -12,7 +12,7 @@ const BigCard = ({ menuPass }) => {
 
   return (
     <div className='card'>
-        < img src={menuPass.menu_url ?? defaultImg} width='220'/>
+        < img src={menuPass.menu_url ?? defaultImg} width='300'/>
             <div className='card-text'>
                 <h1 className='indredient'>วัตถุดิบ</h1>
                 <div className='information'>

@@ -1,5 +1,5 @@
 import React, { Fragment, Component, useState } from "react";
-import '../styles/Navbar.css';
+import '../styles/NavBar.css';
 
 const Navbar = () => {
     return(

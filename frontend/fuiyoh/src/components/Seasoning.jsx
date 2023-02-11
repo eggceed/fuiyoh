@@ -72,10 +72,10 @@ const Seasoning = ({ menuPass }) => {
 
     return (
         <div className='seasoning-info'>
-            <h1>เครื่องปรุง</h1>
+            <h1 className='seasoning-title'>เครื่องปรุง</h1>
             <table className='seasoning-table'>
                 <tr>
-                    <td><h3>Salt: </h3></td>
+                    <td><h3>เกลือ: </h3></td>
                     <td><input type="number" min="0" defaultValue={getSeasoning("Salt")} ref={saltEl} /></td>
                     <td><h3>g</h3></td>
                 </tr>
