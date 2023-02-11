@@ -33,8 +33,8 @@ OrderMenu current_order;
 
 void setup() {
   Serial.begin(115200);
-  myservo.attach(26);  
-  myservo_1.attach(25);
+  myservo.attach(SERVO_PIN);  
+  myservo_1.attach(SERVO_PIN_1);
   initTasks();
 }
 
@@ -53,6 +53,8 @@ void fetchCurrentOrder(void* param) {
       if (current_order.status == "ordering") {
         SALT_DURATION = current_order.salt;
         MSG_DURATION = current_order.msg;
+        //TODO: Create task to open seasoning valves.
+        vTaskSuspend(nullptr);
       }
     } catch (char* ex) {
       Serial.print("Exception Caught: ");
@@ -111,30 +113,4 @@ void initTasks() {
       &taskGETCurrentOrder,  // Task Handle to register
       0  // CPU Core (0 or 1)
   );
-}
-
-void sweep_servo (void *param){
-    while(1){
-        for (int pos = 0; pos <= 90; pos += 1) {
-    myservo.write(pos);
-    delay(45); 
-  }
-  for (int pos = 90; pos >= 0; pos -= 1) {
-    myservo.write(pos);
-    delay(45); 
-  }
-    }
-}
-
-void sweep_servo1(void *param){
-    while(1){
-        for (int pos1 = 0; pos1 <= 90; pos1 += 1) {
-    myservo_1.write(pos1);
-    delay(45); 
-  }
-  for (int pos1 = 90; pos1 >= 0; pos1 -= 1) {
-    myservo_1.write(pos1);
-    delay(45); 
-  }
-    }
 }
