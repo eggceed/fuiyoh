@@ -1,12 +1,14 @@
 .menu_list {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
     padding: 2rem;
     width: 50%;
+    margin: 0 auto;
     
 }
 .home {
     text-align: center;
     font-size: 5;
+
 }

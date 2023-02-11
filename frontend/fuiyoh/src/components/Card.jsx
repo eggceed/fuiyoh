@@ -10,12 +10,17 @@ const Card = ({ menu_id, menu_name, menu_url, ingredient }) => {
 
     return (
         <Link to={routeName} className='card'>
-            < img src={menu_url ?? defaultImg} width='220'/>
+            <div className='property'>
+                <div className='menu-image'>
+                    <img src={menu_url ?? defaultImg} width='220' height='150' />
+                </div>
             <div className='card-text'>
-                <h1 className='title'>{menu_name}</h1>
+                <h5 className='title'>{menu_name}</h5>
                 <div className='information'>
                     <p>{ingredient + ''}</p>
-                </div>
+                </div> 
+            </div>
+            
             </div>
         </Link>
     )
