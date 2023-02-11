@@ -72,7 +72,7 @@ back-end send order menu to hardware
 end point: /menu/current/
 
     return order menu form
-## PUT update_current_order_status(json:{order_id:int,status:str})
+## POST update_current_order_status(json:{order_id:int,status:str})
 hardware update status of order menu back to back-end to update database
 
 endpoint: /menu/order/status/
