@@ -3,8 +3,9 @@
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
 #include "main.h"
-#include "wifi.h"
+#include "mywifi.h"
 #include "http.h"
+#include "FS.h"
 
 #define SERVO_PIN 26    // LEFT, OPEN: 180, CLOSE: 90
 #define SERVO_PIN_1 25  // RIGHT
@@ -91,11 +92,11 @@ void prepareSeasoning(void* param) {
   while(1) {
     myservo.write(180);
     vTaskDelay((SALT_DURATION * 1000) / portTICK_PERIOD_MS);
-    myservo.write(90);
+    myservo.write(100);
     vTaskDelay(500 / portTICK_PERIOD_MS);
-    myservo_1.write(180);
-    vTaskDelay((MSG_DURATION * 1000) / portTICK_PERIOD_MS);
     myservo_1.write(90);
+    vTaskDelay((MSG_DURATION * 1000) / portTICK_PERIOD_MS);
+    myservo_1.write(0);
     SALT_DURATION = 0;
     MSG_DURATION = 0;
     Serial.println("Finished dispensing...");
@@ -195,6 +196,7 @@ void checkSeasoning(void* param) {
         }
       }
       int light = (analogRead(sensors[i].ldr));
+      // Serial.println("Light: "+ String(sensors[i].ldr)+":" + String(light));
       if (light >= 3100) {
         checkCounts[i] += 1;
       } else {
