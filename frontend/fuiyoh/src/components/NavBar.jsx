@@ -4,8 +4,8 @@ import '../styles/Navbar.css';
 const Navbar = () => {
     return(
         <Fragment>
-            <div class="topnav">
-                <a class="active" href="#home">Fuiyoh</a>
+            <div className="topnav">
+                <a className="active" href="#home">Fuiyoh</a>
             </div>
         </Fragment>
     )

@@ -4,12 +4,12 @@ import defaultImg from '../assets/default.png'
 import { Link } from 'react-router-dom'
 
 
-const Card = ({ id, menu_name, menu_url, ingredient }) => {
+const Card = ({ menu_id, menu_name, menu_url, ingredient }) => {
 
-    // const routeName = `/${id}`
+    const routeName = `/${menu_id}`
 
     return (
-        <div className='card'>
+        <Link to={routeName} className='card'>
             < img src={menu_url ?? defaultImg} width='220'/>
             <div className='card-text'>
                 <h1 className='title'>{menu_name}</h1>
@@ -17,7 +17,7 @@ const Card = ({ id, menu_name, menu_url, ingredient }) => {
                     <p>{ingredient + ''}</p>
                 </div>
             </div>
-        </div>
+        </Link>
     )
 }
 
