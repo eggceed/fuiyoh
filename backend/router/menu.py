@@ -93,6 +93,14 @@ def get_currnt_order_status(order_id:int):
         raise HTTPException(status_code=400,detail='Order id not found')
     return menu_current
 
+@router.get('/search/{menu_name}')
+def search_menu(menu_name:str):
+    if menu.find_one({},{'_id':0})==None:
+        raise HTTPException(status_code=400,detail='no menu')
+    if not menu.find_one({'menu_name':menu_name},{'_id':0}):
+        raise HTTPException(status_code=400,detail='menu_name not found')
+    return menu.find_one({'menu_name':menu_name},{'_id':0})
+
 @router.put('/current/order/status')
 def update_current_order_status(order:Order_menu):
     if not order_menu.find_one({}):
