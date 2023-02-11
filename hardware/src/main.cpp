@@ -4,6 +4,9 @@
 #include <HTTPClient.h>
 #include "http.h"
 
+#define SERVO_PIN 26
+#define SERVO_PIN_1 25
+
 const String SALT_STR = "salt";
 const String MSG_STR = "msg";
 bool SALT_STATUS = true;
@@ -24,10 +27,14 @@ void prepareSeasoning(void* param);
 void checkSeasoning(void* param);
 void initTasks();
 
+Servo myservo; 
+Servo myservo_1;
 OrderMenu current_order;
 
 void setup() {
   Serial.begin(115200);
+  myservo.attach(26);  
+  myservo_1.attach(25);
   initTasks();
 }
 
@@ -104,4 +111,30 @@ void initTasks() {
       &taskGETCurrentOrder,  // Task Handle to register
       0  // CPU Core (0 or 1)
   );
+}
+
+void sweep_servo (void *param){
+    while(1){
+        for (int pos = 0; pos <= 90; pos += 1) {
+    myservo.write(pos);
+    delay(45); 
+  }
+  for (int pos = 90; pos >= 0; pos -= 1) {
+    myservo.write(pos);
+    delay(45); 
+  }
+    }
+}
+
+void sweep_servo1(void *param){
+    while(1){
+        for (int pos1 = 0; pos1 <= 90; pos1 += 1) {
+    myservo_1.write(pos1);
+    delay(45); 
+  }
+  for (int pos1 = 90; pos1 >= 0; pos1 -= 1) {
+    myservo_1.write(pos1);
+    delay(45); 
+  }
+    }
 }
