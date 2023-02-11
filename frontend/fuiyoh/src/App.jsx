@@ -17,17 +17,10 @@ function App() {
   return (
     <div className="App">
     <NavBar/>
-      {/* <Routes>
+      <Routes>
         <Route path="/" element={<Home/>} />
         <Route path='/:id' element={<Menu/>}/>
-      </Routes> */}
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/add-menu" element={<AddMenu />}/>
       </Routes>
-      {/* <Menu/> */}
-      {/* <BigCard/> */}
-
     </div>
   )
 }

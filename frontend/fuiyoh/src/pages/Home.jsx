@@ -1,27 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Card from '../components/Card'
-import TestData from '../assets/test.json'
 import '../styles/Home.css'
 import Buttton from '../components/Button'
-  
+
 const Home = () => {
-    // const [menu, setMenu] = useState([])
+    const [menu, setMenu] = useState([])
+    // console.log(menu)
+
+    useEffect(() => {
+        getMenu().then(data => setMenu(data)).catch(err => console.log(err))
+    })
     
-    // useEffect(() => {
-    //     
-    // })
-
-
-    console.log(TestData.init_menu)   
     return (
     <div>
         <h1 className='home'>Menu</h1>
-            <div className='menu_list'>
-                {TestData.init_menu.map(m => <Card {...m} />)}
-            </div> 
-            <a href='/add-menu'>
-                <Buttton name="+"/>
-            </a>
+        <div className='menu_list'>
+            {TestData.init_menu.map(m => <Card {...m} />)}
+        </div> 
+        <Buttton name="+"/>
     </div>
     
   )

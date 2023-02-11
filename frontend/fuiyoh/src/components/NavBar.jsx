@@ -5,7 +5,7 @@ const Navbar = () => {
     return(
         <Fragment>
             <div class="topnav">
-                <a class="active" href="/">Fuiyoh</a>
+                <a class="active" href="#home">Fuiyoh</a>
             </div>
         </Fragment>
     )
