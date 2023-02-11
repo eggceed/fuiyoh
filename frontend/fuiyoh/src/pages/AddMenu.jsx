@@ -1,13 +1,16 @@
-import React, { Component, Fragment }from 'react'
+import React, { Component, Fragment, useState }from 'react'
 import '../styles/AddMenu.css'
 import menu from '../assets/menu.png'
-import Button from '../components/Button'
 import axios from 'axios'
+import { useNavigate } from "react-router-dom"
 
 
 const AddMenu = () => {
+    const [imgstate, setImg] = useState();
 
-    function handleSubmit(e) {
+    const navigate = useNavigate();
+
+    async function handleSubmit(e) {
         e.preventDefault();
     
         const form = e.target;
@@ -16,11 +19,14 @@ const AddMenu = () => {
     
         const formJson = Object.fromEntries(formData.entries());
         formJson.ingredient = formJson.ingredient.split(",")
+        if (formJson.menu_url == "") {
+            formJson.menu_url = "https://i.imgflip.com/4kdqxk.jpg"
+        }
         console.log(formJson);
 
-        axios.post('http://group3.exceed19.online/menu/add', formJson).then((response) => {console.log(response);}).catch((error) => {console.log(error)});
+        await axios.post('http://group3.exceed19.online/menu/add', formJson)
         
-    
+        navigate("/");
       }
 
     return (
@@ -39,7 +45,7 @@ const AddMenu = () => {
                 </li>
                 <li>
                     รูป:
-                    <textarea className="menu-img" name="menu_url"/>
+                    <textarea className="menu-img" name="menu_url" onChange={(e) => {setImg(e.target.value)}}/>
                 </li>
                 วัตถุดิบ:
                 <li>
@@ -49,7 +55,7 @@ const AddMenu = () => {
             </div>
         
             <div className="img-section">
-                <img className="default-menu-image" src={menu} />
+                <img className="default-menu-image" src={imgstate || menu}/>
             </div>
 
             <div className="seasoning">
