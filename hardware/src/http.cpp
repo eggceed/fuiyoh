@@ -30,45 +30,38 @@ OrderMenu fromJson(DynamicJsonDocument json) {
   OrderMenu order;
   String status = json["order_status"].as<String>();
   if (status != "ordering") return order;
-  order.menuId = json["menu_id"].as<int>();
-  order.menuName = json["menu_names"].as<String>();
   order.salt = json["salt"].as<int>();
   order.msg = json["msg"].as<int>();
   order.orderId = json["order_id"].as<int>();
-  order.datetime = json["order_time"].as<String>();
   order.status = status;
   return order;
 }
 
-bool PUT_order_status(OrderMenu order) throw (char*) {
+bool PUT_order_status(OrderMenu* order) {
   HTTPClient http;
-  DynamicJsonDocument doc(1024);
-  doc["menu_id"] = order.menuId;
-  doc["menu_names"] = order.menuName;
-  doc["salt"] = order.salt;
-  doc["msg"] = order.msg;
-  doc["order_id"] = order.orderId;
-  doc["order_time"] = order.datetime;
-  doc["status"] = "complete";
+  DynamicJsonDocument doc(512);
+  doc["order_id"] = order->orderId;
+  doc["order_status"] = "complete";
 
   String body;
   serializeJson(doc, body);
 
-  String endpoint = API_URL + "/menu/order/status";
+  String endpoint = API_URL + "/menu/current/order/status";
   http.begin(endpoint);
   http.addHeader("Content-Type", "application/json");
 
   int responseCode = http.PUT(body);
   if (responseCode == 400) {
     String payload = http.getString();
-    throw "PUT /menu/order/status: " + payload;
+    Serial.println("PUT /menu/current/order/status: " + payload);
+    return false;
   }
-  if (responseCode != 200) throw "PUT /menu/order/status: HTTP Error";
+  if (responseCode != 200) { Serial.println("PUT /menu/current/order/status: HTTP Error " + String(responseCode)); return false; }
   http.end();
   return true;
 }
 
-bool PUT_seasoning_status(String seasoning, bool isAvailable) throw (char*) {
+bool PUT_seasoning_status(String seasoning, bool isAvailable) {
   HTTPClient http;
   DynamicJsonDocument doc(512);
   doc["seasoning_name"] = seasoning;
@@ -77,16 +70,17 @@ bool PUT_seasoning_status(String seasoning, bool isAvailable) throw (char*) {
   String body;
   serializeJson(doc, body);
 
-  String endpoint = API_URL + "/seasoning";
+  String endpoint = API_URL + "/seasoning/";
   http.begin(endpoint);
   http.addHeader("Content-Type", "application/json");
 
   int responseCode = http.PUT(body);
   if (responseCode == 400) {
     String payload = http.getString();
-    throw "PUT /seasoning: " + payload;
+    Serial.println("PUT /seasoning: " + payload);
+    return false;
   }
-  if (responseCode != 200) throw "PUT /seasoning: HTTP Error";
+  if (responseCode != 200) { Serial.println("PUT /seasoning: HTTP Error " + String(responseCode)); return false; }
   http.end();
   return true;
 }
