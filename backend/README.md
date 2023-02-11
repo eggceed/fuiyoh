@@ -55,9 +55,18 @@ endpoint: /menu/num/{menu_id}
     
     return default menu form
 
+## GET search_menu()
+backend get specified menu name to find in database and send to frontend
+
+endpoint: /menu/search/{menu_name}
+
+    return default menu from
+
 ## POST update_new_menu(json:{menu_name:str,menu_url:str,ingredient:list(str),salt_gram:int,msg_gram:int})
 front-end add new menu send to back-edn for insert to database
+
 endpoint: /menu/add/
+    
     return {add_compelte:}
 ## POST order_menu(json:{order_id:int,menu_name:str,msg_gram:int,salt_gram:int})
 

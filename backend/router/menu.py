@@ -61,12 +61,12 @@ def post_order_menu(default_menu:Default_menu):
         raise HTTPException(status_code=400,detail='menu_name not found')
     if default_menu.menu_name=='':
         raise HTTPException(status_code=400,detail='menu_name is required')
-    if default_menu.msg_gram and default_menu.salt_gram and seasoning_status.find_one({'msg':False},{'_id':0}) and seasoning_status.find_one({'salt':False},{'_id':0}):
-        raise HTTPException(status_code=400,detail='salt and msg not available')
-    if default_menu.msg_gram and seasoning_status.find_one({'msg':False},{'_id':0}):
-        raise HTTPException(status_code=400,detail='msg not available')
-    if default_menu.salt_gram and seasoning_status.find_one({'salt':False},{'_id':0}):
-        raise HTTPException(status_code=400,detail='salt not available')
+    if default_menu.msg_gram and default_menu.salt_gram and seasoning_status.find_one({'seasoning_name':'msg'})['is_available']==False and seasoning_status.find_one({'seasoning_name':'salt'})['is_available']==False:
+        raise HTTPException(status_code=400,detail='seasoning not available')
+    if default_menu.msg_gram and seasoning_status.find_one({'seasoning_name':'msg'})['is_available']==False:
+        raise HTTPException(status_code=400,detail='msg seasoning not available')
+    if default_menu.salt_gram and seasoning_status.find_one({'seasoning_name':'salt'})['is_available']==False:
+        raise HTTPException(status_code=400,detail='salt seasoning not available')
     new_order_menu = Order_menu(menu_id=default_menu.menu_id,menu_name=default_menu.menu_name,msg=default_menu.msg_gram/5,salt=default_menu.salt_gram/5,order_id=cnt['order_count'],order_time=str(datetime.now()),order_status='ordering')
     order_menu.insert_one(new_order_menu.dict())
     order_count.update_one({},{'$set':cnt})
@@ -93,7 +93,15 @@ def get_currnt_order_status(order_id:int):
         raise HTTPException(status_code=400,detail='Order id not found')
     return menu_current
 
-@router.post('/current/order/status')
+@router.get('/search/{menu_name}')
+def search_menu(menu_name:str):
+    if menu.find_one({},{'_id':0})==None:
+        raise HTTPException(status_code=400,detail='no menu')
+    if not menu.find_one({'menu_name':menu_name},{'_id':0}):
+        raise HTTPException(status_code=400,detail='menu_name not found')
+    return menu.find_one({'menu_name':menu_name},{'_id':0})
+
+@router.put('/current/order/status')
 def update_current_order_status(order:Order_menu):
     if not order_menu.find_one({}):
         raise HTTPException(status_code=400,detail='did not do any menu before')
