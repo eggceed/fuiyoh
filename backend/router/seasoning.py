@@ -12,7 +12,7 @@ class Seasoning(BaseModel):
 
 router = APIRouter(prefix='/seasoning')
 
-@router.post('/')
+@router.put('/')
 def update_seasoning_status(seasoning:Seasoning):
     if seasoning.seasoning_name not in ['msg','salt']:
         raise HTTPException(status_code=400,detail='seasoning name not found')
