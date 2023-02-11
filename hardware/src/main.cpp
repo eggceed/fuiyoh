@@ -2,6 +2,7 @@
 #include <ESP32Servo.h>
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
+#include "main.h"
 #include "http.h"
 
 #define SERVO_PIN 26
@@ -29,12 +30,18 @@ void initTasks();
 
 Servo myservo; 
 Servo myservo_1;
+DetectionSensor detect = DetectionSensor(14, 34);
+DetectionSensor detect_1 = DetectionSensor(12, 32);
 OrderMenu current_order;
 
 void setup() {
   Serial.begin(115200);
   myservo.attach(SERVO_PIN);  
   myservo_1.attach(SERVO_PIN_1);
+  pinMode(detect.laser, OUTPUT);
+  pinMode(detect_1.laser, OUTPUT);
+  pinMode(detect.ldr, INPUT);
+  pinMode(detect_1.ldr, INPUT);
   initTasks();
 }
 
@@ -53,7 +60,15 @@ void fetchCurrentOrder(void* param) {
       if (current_order.status == "ordering") {
         SALT_DURATION = current_order.salt;
         MSG_DURATION = current_order.msg;
-        //TODO: Create task to open seasoning valves.
+        xTaskCreatePinnedToCore(
+            prepareSeasoning,
+            "Prepare Seasoning",
+            2048,
+            NULL,
+            2,
+            &taskOpenValves,
+            1
+        );
         vTaskSuspend(nullptr);
       }
     } catch (char* ex) {
@@ -62,6 +77,17 @@ void fetchCurrentOrder(void* param) {
     }
     vTaskDelay(5000 / portTICK_PERIOD_MS);
   }
+}
+
+void prepareSeasoning(void* param) {
+  myservo.write(90);
+  vTaskDelay((SALT_DURATION * 1000) / portTICK_PERIOD_MS);
+  myservo.write(0);
+  vTaskDelay(500 / portTICK_PERIOD_MS);
+  myservo_1.write(90);
+  vTaskDelay((MSG_DURATION * 1000) / portTICK_PERIOD_MS);
+  myservo_1.write(0);
+  vTaskResume(taskGETCurrentOrder);
 }
 
 void updateOrderStatus(void* param) {

@@ -49,7 +49,7 @@ bool PUT_order_status(OrderMenu order) throw (char*) {
   doc["msg"] = order.msg;
   doc["order_id"] = order.orderId;
   doc["order_time"] = order.datetime;
-  doc["status"] = "Complete";
+  doc["status"] = "complete";
 
   String body;
   serializeJson(doc, body);
