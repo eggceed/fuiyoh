@@ -1,0 +1,47 @@
+{
+    "init_menu": [
+        {
+            "menu_name": "หมูสามชั้นทอดเกลือ",
+            "menu_url": "https://img.wongnai.com/p/1920x0/2020/01/12/b4c783f2f60240d0a5b438b4b32f9f5f.jpg",
+            "ingredient": [
+                "หมูสามชั้น",
+                "น้ำมัน",
+                "ผักชี"
+            ],
+            "salt_gram": 15,
+            "msg_gram": 5
+        },
+        {
+            "menu_name": "ไก่ทอดเกลือ",
+            "menu_url": "https://food.mthai.com/app/uploads/2017/07/Chicken-wings-fried-fish-sauce.jpg",
+            "ingredient": [
+                "ไก่",
+                "น้ำมัน",
+                "ผักชี"
+            ],
+            "salt_gram": 15,
+            "msg_gram": 5
+        },
+        {
+            "menu_name": "ห่านย่างเกลือ",
+            "menu_url": "https://www.bangkokbanksme.com/wp-content/uploads/2019/02/%E0%B8%AB%E0%B9%88%E0%B8%B2%E0%B8%99%E0%B8%A2%E0%B9%88%E0%B8%B2%E0%B8%87%E0%B8%AD%E0%B8%A3%E0%B9%88%E0%B8%AD%E0%B8%A2%E0%B8%82%E0%B8%B1%E0%B9%89%E0%B8%99%E0%B9%80%E0%B8%97%E0%B8%9E%E0%B8%A3%E0%B8%B0%E0%B8%94%E0%B8%B1%E0%B8%9A%E0%B8%A1%E0%B8%B4%E0%B8%8A%E0%B8%A5%E0%B8%B4%E0%B8%99-5-%E0%B8%9B%E0%B8%B5%E0%B8%8B%E0%B9%89%E0%B8%AD%E0%B8%996.png",
+            "ingredient": [
+                "ห่าน",
+                "น้ำมัน"
+            ],
+            "salt_gram": 25,
+            "msg_gram": 10
+        },
+        {
+            "menu_name": "ข้าวผัดไข่",
+            "menu_url": "https://s359.kapook.com/pagebuilder/6d0bad9e-ccdc-414b-a9b0-fdbabaea1daa.jpg",
+            "ingredient": [
+                "ข้าว",
+                "น้ำมัน",
+                "ไข่"
+            ],
+            "salt_gram": 5,
+            "msg_gram": 5
+        }
+    ]
+}

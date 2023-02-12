@@ -3,18 +3,20 @@
 #include <ArduinoJson.h>
 #include <HTTPClient.h>
 #include "main.h"
-#include "wifi.h"
+#include "mywifi.h"
 #include "http.h"
+#include "FS.h"
 
-#define SERVO_PIN 26    // LEFT, OPEN: 180, CLOSE: 90
-#define SERVO_PIN_1 25  // RIGHT
+#define SERVO_PIN 26        // LEFT, OPEN: 180, CLOSE: 90
+#define SERVO_PIN_1 13      // RIGHT
+#define LDR_THRESHOLD 3300  // The threshold for LDR to receive laser light
 
 const String SALT_STR = "salt";
 const String MSG_STR = "msg";
-bool SALT_STATUS = true;
-bool MSG_STATUS = true;
-int SALT_DURATION = 0;
-int MSG_DURATION = 0;
+bool SALT_STATUS = false;
+bool MSG_STATUS = false;
+float SALT_DURATION = 0;
+float MSG_DURATION = 0;
 bool working = false;
 
 TaskHandle_t taskGETCurrentOrder;     // P: 1 C: 1
@@ -32,8 +34,8 @@ void initTasks();
 
 Servo myservo; 
 Servo myservo_1;
-DetectionSensor detect = DetectionSensor(14, 34);
-DetectionSensor detect_1 = DetectionSensor(12, 32);
+DetectionSensor detect_1 = DetectionSensor(14, 34);
+DetectionSensor detect = DetectionSensor(12, 32);
 OrderMenu current_order;
 
 void setup() {
@@ -64,11 +66,16 @@ void fetchCurrentOrder(void* param) {
     try {
       DynamicJsonDocument doc = GET_current_order();
       current_order = fromJson(doc);
-      if (!working && current_order.status == "ordering" && MSG_STATUS && SALT_STATUS) {
-        Serial.println("Will now work on an order " + String(current_order.orderId));
+      if (!working && current_order.status == "ordering") {
         SALT_DURATION = current_order.salt;
         MSG_DURATION = current_order.msg;
-        working = true;
+        if (!SALT_STATUS && SALT_DURATION) {
+          continue;
+        }
+        if (!MSG_STATUS && MSG_DURATION) {
+          continue;
+        }
+        Serial.println("Will now work on an order " + String(current_order.orderId));
         xTaskCreatePinnedToCore(
             prepareSeasoning,
             "Prepare Seasoning",
@@ -89,13 +96,24 @@ void fetchCurrentOrder(void* param) {
 
 void prepareSeasoning(void* param) {
   while(1) {
-    myservo.write(180);
-    vTaskDelay((SALT_DURATION * 1000) / portTICK_PERIOD_MS);
-    myservo.write(90);
-    vTaskDelay(500 / portTICK_PERIOD_MS);
-    myservo_1.write(180);
-    vTaskDelay((MSG_DURATION * 1000) / portTICK_PERIOD_MS);
-    myservo_1.write(90);
+    working = true;
+    Serial.println("SALT NEEDED: " + String(SALT_DURATION));
+    if (SALT_DURATION) {
+      Serial.println("Open SALT");
+      myservo.write(180);
+      vTaskDelay((SALT_DURATION * 200) / portTICK_PERIOD_MS);
+      myservo.write(100);
+      Serial.println("Close SALT");
+      vTaskDelay(500 / portTICK_PERIOD_MS);
+    }
+    Serial.println("MSG NEEDED: " + String(MSG_DURATION));
+    if (MSG_DURATION) {
+      Serial.println("Open MSG");
+      myservo_1.write(90);
+      vTaskDelay((MSG_DURATION * 200) / portTICK_PERIOD_MS);
+      myservo_1.write(0);
+      Serial.println("Close MSG");
+    }
     SALT_DURATION = 0;
     MSG_DURATION = 0;
     Serial.println("Finished dispensing...");
@@ -195,7 +213,8 @@ void checkSeasoning(void* param) {
         }
       }
       int light = (analogRead(sensors[i].ldr));
-      if (light >= 3100) {
+      //Serial.println("Light: "+ String(sensors[i].ldr)+":" + String(light));
+      if (light >= LDR_THRESHOLD) {
         checkCounts[i] += 1;
       } else {
         checkCounts[i] = 0;
@@ -242,6 +261,7 @@ void initTasks() {
       &taskMonitorSeasoning,
       0
   );
+  vTaskDelay(1000 / portTICK_PERIOD_MS);
   xTaskCreatePinnedToCore(
       fetchCurrentOrder,
       "GET Current Order",
