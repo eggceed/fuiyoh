@@ -43,18 +43,18 @@ const AddMenu = () => {
             <div className="add-first-info">
                 <div className="name-img"> 
                 <b>เมนู:</b>
-                    <li>
+                    <li className="add-menu-li">
                         ชื่อ:
                     </li>
                     <input className="menu-name" name="menu_name"/>
-                    <li>
+                    <li className="add-menu-li">
                         รูป (ใส่ url):
                     </li>
                     <textarea className="menu-img" name="menu_url" onChange={(e) => {setImg(e.target.value)}}/>
                 </div>
                 <div className="ingredients-section">
                     <b>วัตถุดิบ:</b>
-                    <li>
+                    <li className="add-menu-li">
                         ชื่อวัตถุดิบ (คั่นด้วย <b>,</b>):
                     </li>
                     <textarea className="ingrediants" name="ingredient"/>
@@ -66,10 +66,10 @@ const AddMenu = () => {
             <div className="seasoning">
              <div className="seasoning-name">     
                 <b>เครื่องปรุง:</b>
-                <li>
+                <li className="add-menu-li">
                     <label className="salt">เกลือ <input className="seasoning-input" name="salt_gram"/> g </label>
                 </li>
-                <li>
+                <li className="add-menu-li">
                     <label className="msg">MSG <input className="seasoning-input" name="msg_gram"/> g </label>
                 </li>
             </div>
