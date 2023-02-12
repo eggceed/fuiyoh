@@ -62,11 +62,11 @@ def post_order_menu(default_menu:Default_menu):
     if default_menu.menu_name=='':
         raise HTTPException(status_code=400,detail='menu_name is required')
     if default_menu.msg_gram and default_menu.salt_gram and seasoning_status.find_one({'seasoning_name':'msg'})['is_available']==False and seasoning_status.find_one({'seasoning_name':'salt'})['is_available']==False:
-        raise HTTPException(status_code=400,detail='seasoning not available')
+        raise HTTPException(status_code=400,detail='เครื่องปรุงหมด')
     if default_menu.msg_gram and seasoning_status.find_one({'seasoning_name':'msg'})['is_available']==False:
-        raise HTTPException(status_code=400,detail='msg seasoning not available')
+        raise HTTPException(status_code=400,detail='ผงชูรสหมด')
     if default_menu.salt_gram and seasoning_status.find_one({'seasoning_name':'salt'})['is_available']==False:
-        raise HTTPException(status_code=400,detail='salt seasoning not available')
+        raise HTTPException(status_code=400,detail='เกลือหมด')
     new_order_menu = Order_menu(menu_id=default_menu.menu_id,menu_name=default_menu.menu_name,msg=default_menu.msg_gram/5,salt=default_menu.salt_gram/5,order_id=cnt['order_count'],order_time=str(datetime.now()),order_status='ordering')
     order_menu.insert_one(new_order_menu.dict())
     order_count.update_one({},{'$set':cnt})
