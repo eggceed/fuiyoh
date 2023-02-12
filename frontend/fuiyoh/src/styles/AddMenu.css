@@ -1,51 +1,36 @@
 .add-menu {
     display: flex;
     justify-content: left;
-    margin-left: 20px;
+    margin-left: 50px;
+    font-size: 20px;
+    font-family: 'IBM Plex Sans Thai', sans-serif;
+    font-weight: bold;
+    letter-spacing: 8px; 
+    line-height: 1.5;
+    text-shadow: 2px 2px 3px #817f7f;
 }
 
 .add {
     display: flex;
-    flex-direction: column;
-    border: 1px solid black;
-}
-
-.top {
-    display: flex;
     flex-direction: row;
-    margin-left: 200px;
-    width: 100%;
 }
 
 .add-first-info {
+    width: 100%;
     display: flex;
     flex-direction: column;
+    margin-left: 30px;
 }
 
-.img-section {
-    display: flex;
-    height: 70%;
-    width: 19%;
-    flex-direction: row;
-    margin-top: 10px;
-    margin-left: 10px; 
-}
-
-.default-menu-image {
-    height: 100%;
-    width: 100%;
-}
 
 li {
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    background-color: #ffd4a1;
 }
 
 input {
     margin-left: 15px;
 }
-
-
 
 .bottom {
     display: flex;
@@ -58,30 +43,41 @@ input {
 }
 
 .ingrediants {
-    margin-top: 10px;
+    margin-top: 5px;
     margin-left: 15px;
-    width: 210px;
-    height: 100px;
+    width: 545px;
 }
 
 .seasoning {
+    border-radius: 10px;
+    /* border: 1px solid black; */
+    width: 86.5%;
     display: flex;
     flex-direction: row;
-    height: 50%;
-    margin-left: 20px;
-    margin-right: 20px;
+    height: 27%;
+    margin-top: 10px;
+    margin-left: 40px;
+    margin-bottom: 20px;
 }
 
 .seasoning-name {
-    margin-top: 20px;
+    height: 100%;
+    width: 600px;
+    display: flex;
+    flex-direction: column;
+    margin-top: 8px;
+    margin-left: 2px;
 }
 
 .seasoning-amount {
     margin-top: 20px;
+    display: flex;
+    flex-direction: column;
 }
 
 .seasoning-input {
-    margin-right: 10px;
+    width: 432.5px;
+    margin-right: 15px;
 }
 
 .button {
@@ -90,7 +86,86 @@ input {
 }
 
 .menu-img {
-    height: 15px;
-    margin-top: 25px;
+    margin-left: 15px;
+    height: 70px;
+    width: 542px;
+}
+
+
+.menu-name {
+    width: 535px;
+}
+
+.ingredients-section {
+    width: 86.5%;
     margin-left: 10px;
+    margin-top: 20px;
+}
+
+.name-img {
+    /* background-color: white; */
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-left: 10px;
+    width: 567px;
+    height: 27%;
+}
+
+
+.left {
+    width: 45%;
+    border-radius: 10px;
+}
+
+.all {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    margin-left: 70px;
+    font-family: 'Noto Sans Thai', sans-serif;
+}
+
+.default-menu-image {
+    box-shadow: 2px 5px 12px 4px rgba(0,0,0,0.4),
+     0px -2px 12px 4px rgba(0,0,0,0.22);
+     border: 20px solid white;
+    border-radius: 5rem;
+    margin-top: 13px; 
+    margin-left: 20px;
+    width: 640px;
+    max-height: none !important;
+}
+
+.default-menu-image:hover {
+    transform: scale(1.03, 1.03);
+    box-shadow: 2px 5px 12px 4px rgba(0,0,0,0.4),
+     0px -2px 12px 4px rgba(0,0,0,0.22);
+    transition: all 0.2s ease-in-out;
+}
+
+.border {
+    border: 1px solid black;
+}
+
+li {
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.salt {
+    margin-top: 10px;
+}
+
+.msg {
+    margin-top: 30px;
+}
+
+.add-button {
+    margin-top: 2px;
+    margin-left: 120px;
+    margin-bottom: 50px;
+}
+
+b {
+    font-size: 16px;
 }
