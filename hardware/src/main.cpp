@@ -100,8 +100,8 @@ void prepareSeasoning(void* param) {
     Serial.println("SALT NEEDED: " + String(SALT_DURATION));
     if (SALT_DURATION) {
       Serial.println("Open SALT");
-      myservo.write(180);
-      vTaskDelay((SALT_DURATION * 200) / portTICK_PERIOD_MS);
+      myservo.write(125);
+      vTaskDelay((SALT_DURATION * 150) / portTICK_PERIOD_MS);
       myservo.write(100);
       Serial.println("Close SALT");
       vTaskDelay(500 / portTICK_PERIOD_MS);
@@ -109,8 +109,8 @@ void prepareSeasoning(void* param) {
     Serial.println("MSG NEEDED: " + String(MSG_DURATION));
     if (MSG_DURATION) {
       Serial.println("Open MSG");
-      myservo_1.write(90);
-      vTaskDelay((MSG_DURATION * 200) / portTICK_PERIOD_MS);
+      myservo_1.write(25);
+      vTaskDelay((MSG_DURATION * 150) / portTICK_PERIOD_MS);
       myservo_1.write(0);
       Serial.println("Close MSG");
     }
