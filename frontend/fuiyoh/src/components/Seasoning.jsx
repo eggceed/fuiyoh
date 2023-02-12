@@ -17,12 +17,11 @@ const Seasoning = ({ menuPass }) => {
     const MSGEl = useRef()
     const [btnDisable, setBtnDisable] = useContext(statusContext)
     // console.log(btnDisable, setBtnDisable)
-
     // console.log(menuPass)
 
-    useEffect(() => {
-        console.log("hello world")
-    },[menuID])
+    // useEffect(() => {
+    //     console.log("hello world")
+    // },[menuID])
 
 
     const getSeasoning = seasoning => {
@@ -42,15 +41,11 @@ const Seasoning = ({ menuPass }) => {
         timer = setInterval(async () => {
             try {
                 const result = await axios.get(`${URLFinish}/${menuID}`)
-                console.log(result.data)
+                // console.log(result.data)
                 if (result.data.order_status === "complete") {
                     clearTimer()
                     createSwal("success", "เครื่องปรุงพร้อมแล้ว","#2e9900")
                 }
-                // } else if (result.data.order_status === "ordering") {
-                //     clearTimer()
-                //     createSwal("info", "กำลังเตรียมเครื่องปรุง","#2e9900")
-                // }
             }catch(err){
                 console.log(err)
             }
@@ -63,6 +58,7 @@ const Seasoning = ({ menuPass }) => {
 
         if (saltEl.current.value < 0 || MSGEl.current.value < 0) {
             createSwal("warning","ใส่ปริมาณเครื่องปรุงให้ถูกต้อง","#ffc038")
+            return
         }
 
         const body = {
@@ -71,10 +67,10 @@ const Seasoning = ({ menuPass }) => {
             msg_gram: parseInt(MSGEl.current.value),
             salt_gram: parseInt(saltEl.current.value)
         }
-        // console.log(body)
+        console.log(body)
         try {
             const result = await axios.post(URL, body)
-            console.log(result)
+            // console.log(result)
             setMenuID(result.data.order_id)
             menuID = result.data.order_id
             setBtnDisable(true)
@@ -82,7 +78,7 @@ const Seasoning = ({ menuPass }) => {
             setTimer(menuID, btnDisable)
         }catch(err){
             console.log(err.response.data.detail)
-            createSwal("warning","เครื่องปรุงหมดดดดด","#ffc038")
+            createSwal("warning",err.response.data.detail,"#ffc038")
 
         }
     }
