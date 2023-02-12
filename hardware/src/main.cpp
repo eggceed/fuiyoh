@@ -7,15 +7,16 @@
 #include "http.h"
 #include "FS.h"
 
-#define SERVO_PIN 26    // LEFT, OPEN: 180, CLOSE: 90
-#define SERVO_PIN_1 25  // RIGHT
+#define SERVO_PIN 26        // LEFT, OPEN: 180, CLOSE: 90
+#define SERVO_PIN_1 25      // RIGHT
+#define LDR_THRESHOLD 3100  // The threshold for LDR to receive laser light
 
 const String SALT_STR = "salt";
 const String MSG_STR = "msg";
-bool SALT_STATUS = true;
-bool MSG_STATUS = true;
-int SALT_DURATION = 0;
-int MSG_DURATION = 0;
+bool SALT_STATUS = false;
+bool MSG_STATUS = false;
+float SALT_DURATION = 0;
+float MSG_DURATION = 0;
 bool working = false;
 
 TaskHandle_t taskGETCurrentOrder;     // P: 1 C: 1
@@ -197,7 +198,7 @@ void checkSeasoning(void* param) {
       }
       int light = (analogRead(sensors[i].ldr));
       // Serial.println("Light: "+ String(sensors[i].ldr)+":" + String(light));
-      if (light >= 3100) {
+      if (light >= LDR_THRESHOLD) {
         checkCounts[i] += 1;
       } else {
         checkCounts[i] = 0;
@@ -244,6 +245,7 @@ void initTasks() {
       &taskMonitorSeasoning,
       0
   );
+  vTaskDelay(1000 / portTICK_PERIOD_MS);
   xTaskCreatePinnedToCore(
       fetchCurrentOrder,
       "GET Current Order",
