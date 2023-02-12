@@ -8,8 +8,8 @@
 #include "FS.h"
 
 #define SERVO_PIN 26        // LEFT, OPEN: 180, CLOSE: 90
-#define SERVO_PIN_1 25      // RIGHT
-#define LDR_THRESHOLD 4000  // The threshold for LDR to receive laser light
+#define SERVO_PIN_1 13      // RIGHT
+#define LDR_THRESHOLD 3300  // The threshold for LDR to receive laser light
 
 const String SALT_STR = "salt";
 const String MSG_STR = "msg";
@@ -101,7 +101,7 @@ void prepareSeasoning(void* param) {
     if (SALT_DURATION) {
       Serial.println("Open SALT");
       myservo.write(180);
-      vTaskDelay((SALT_DURATION * 100) / portTICK_PERIOD_MS);
+      vTaskDelay((SALT_DURATION * 200) / portTICK_PERIOD_MS);
       myservo.write(100);
       Serial.println("Close SALT");
       vTaskDelay(500 / portTICK_PERIOD_MS);
@@ -110,7 +110,7 @@ void prepareSeasoning(void* param) {
     if (MSG_DURATION) {
       Serial.println("Open MSG");
       myservo_1.write(90);
-      vTaskDelay((MSG_DURATION * 100) / portTICK_PERIOD_MS);
+      vTaskDelay((MSG_DURATION * 200) / portTICK_PERIOD_MS);
       myservo_1.write(0);
       Serial.println("Close MSG");
     }
