@@ -2,8 +2,8 @@
 #include <ArduinoJson.h>
 
 typedef struct sOrderMenu {
-  int salt;
-  int msg;
+  float salt;
+  float msg;
   int orderId = -1;
   String status;
 } OrderMenu;

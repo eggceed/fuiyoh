@@ -30,8 +30,8 @@ OrderMenu fromJson(DynamicJsonDocument json) {
   OrderMenu order;
   String status = json["order_status"].as<String>();
   if (status != "ordering") return order;
-  order.salt = json["salt"].as<int>();
-  order.msg = json["msg"].as<int>();
+  order.salt = json["salt"].as<float>();
+  order.msg = json["msg"].as<float>();
   order.orderId = json["order_id"].as<int>();
   order.status = status;
   return order;
